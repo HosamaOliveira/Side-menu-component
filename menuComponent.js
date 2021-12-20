@@ -6,11 +6,7 @@ template.innerHTML = /*html*/`
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Philosopher:ital,wght@0,700;1,400;1,700&display=swap');
 
-:root {
-	--letterColor: rgb(226, 176, 245);
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Comfortaa', cursive; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Comfortaa', cursive;}
 
 
 
@@ -28,32 +24,27 @@ template.innerHTML = /*html*/`
   border-radius: 50%;
   overflow: hidden;
   transition: box-shadow 1.1s cubic-bezier(.19, 1, .22, 1);
-  cursor: pointer;
-  z-index: 1;
+  cursor: url(./iconsComponent/cursor2.png), default;
+  z-index: 2;
 	-webkit-tap-highlight-color: transparent;
 }
 
-#shadow {
+#sideMenuShadow {
+  transform: scale(0);
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: #black;
-  transform: scale(0);
+  background-color: #a28cc2bb;
 }
 
 #burgerMenu:checked~#menu {
   background-color: #a28cc2;
 }
 
-#burgerMenu:checked~#shadow {
+#burgerMenu:checked~#sideMenuShadow {
   transform: scale(1);
-  animation: fade linear .2s;
-}
-
-#burgerMenu:not(:checked)~#shadow {
-  animation: fadeOut linear .5s;
 }
 
 .burguer {
@@ -121,11 +112,13 @@ input {
   right: -400px;
 	top: 0;
 	padding-bottom: 10px;
-  background-image: linear-gradient(rgba(165, 94, 209, 0.842), rgba(196, 174, 209, 0.842));
-  box-shadow: 0 0 10px 4px #11002bdc;
+  background-image: linear-gradient(rgb(165, 94, 209), rgb(196, 174, 209));
+  box-shadow: 0 0 5px 1px #11002bdc;
   transition: 1s;
   overflow-y: auto;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  cursor: url(./iconsComponent/cursor.png), default;
 }
 
 input:checked~#sub-menu {
@@ -138,7 +131,7 @@ input:checked~#sub-menu {
 	width: 100%;
 	padding: 10px;
 	font-size: 20pt;
-	margin-right: 50px;
+	margin-right: 30px;
 	margin-top: 25px;
 	color: rgb(226, 176, 245);
 	text-shadow: 0 4px 2px rgb(89, 35, 117), 0px 5px 2px rgb(168, 81, 226);
@@ -148,7 +141,7 @@ input:checked~#sub-menu {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	gap: 100px;
+	gap: 50px;
   width: 90%;
 	padding: 10px;
 	margin-top: 40px;
@@ -170,7 +163,7 @@ input:checked~#sub-menu {
   cursor: pointer;
   color: rgb(27, 16, 48);
   transition: all 0.3s;
-  position: relative;
+  position: relative
 }
 
 .naviMenu {
@@ -186,6 +179,7 @@ input:checked~#sub-menu {
   transition: all 0.3s;
   background-image: linear-gradient(rgb(147, 87, 187), rgb(214, 173, 230));
 	box-shadow: #39145c 0 1px 2px .1px;
+  cursor: url(./iconsComponent/cursor2.png), default;
 }
 
 .naviMenu::before {
@@ -244,17 +238,19 @@ input:checked~#sub-menu {
 
 #ico {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
+	margin-top: 30px;
 }
 
 #socialNetworkText {
 	border-radius: 5px;
 	padding: 10px;
-	box-shadow: #39145c 0 3px 5px .2px;
-	font-size: 20pt;
+  text-shadow: 0px 0px 10px #2d0f41;
+	/*box-shadow: #39145c 0 3px 3px .2px;*/
+	font-size: 15pt;
 	color: #2d0f41;
-	background-image: linear-gradient(rgb(147, 87, 187), rgb(214, 173, 230));
+	/*background-image: linear-gradient(rgb(147, 87, 187), rgb(214, 173, 230));*/
 }
 
 p {
@@ -267,12 +263,17 @@ p {
 
 
 a {
+	text-decoration: none;
+  cursor: url(./iconsComponent/cursor2.png), default;
+}
+
+.linkIcon {
   width: 40px;
   transition: transform .5s;
 	text-decoration: none;
 }
 
-a:hover {
+.linkIcon:hover {
   transform: scale(1.2);
   transition: transform .5s;
 }
@@ -282,6 +283,9 @@ a:hover {
   border-radius: 1ex;
 }
 
+#hand {
+  filter: hue-rotate(320deg);
+}
 
 </style>
 
@@ -297,26 +301,26 @@ a:hover {
 		</div>
 
 	</label>
+  <div id="sideMenuShadow"></div>
+		
+  
 
-	<!-- <div id="shadow" onclick="document.getElementById('burgerMenu').checked=false"></div> -->
-		
-		
+
 	<nav id="sub-menu">
 
 		<h2 id="h2">Rosa de Pedra</h2>
 
-		<div id="contentMenu">
+    <div id="contentMenu">
 
-			<div id="contentLink">  
-				<div class="link"><button class="naviMenu" id="home" onclick="navigate('home')"><a href="">Home</a></button></div>
-				<div class="link"><button class="naviMenu" id="photos" onclick="navigate('photos')"><a href="">Galeria</a></button></div>
-				<div class="link"><button class="naviMenu" id="videoClasses" onclick="navigate('videoClasses')  "><a href="">Vídeo-Aulas</a></button>
-			</div>
+      <div id="contentLink">  
+        <div class="link"><a href=""><button class="naviMenu" id="home">Home</button></a></div>
+        <div class="link"><a href="" target="_blank"><button class="naviMenu" id="photos">Galeria</button></a></div>
+        <div class="link"><a href="" target="_blank"><button class="naviMenu" id="videoClasses">Vídeo-Aulas</button></a></div>
+      </div>
 
-			
-		</div>
+      <div id="socialNetworkText">Acesse nossas redes sociais <p id="hand">&#128071</p></div>
+    </div>
 
-		<div id="socialNetworkText">Acesse nossas redes sociais <p>&#128071</p></div>
 
 		<div id="ico">
 
@@ -344,38 +348,15 @@ class LateralMenu extends HTMLElement {
   }
 
   build() {
-    const shadow = this.attachShadow({'mode': 'open'})
+    this.attachShadow({'mode': 'open'})
     this.shadowRoot.appendChild(template.content.cloneNode(true))
+
+    this.shadowRoot.querySelector('#sideMenuShadow').onclick = () => {
+      this.shadowRoot.querySelector('#burgerMenu').checked=false
+    }
+
   }
-	
-	// function navigate(page) {
-	// 	switch (page) {
-	// 		case 'home':
-	// 			location.href = './index.html'
-	// 			break
-	// 		case 'photos':
-	// 			location.href = './fotos.html'
-	// 			break
-	// 		case 'revenues':
-	// 			location.href = './revenues.html'
-	// 			break
-	// 		case 'videoClasses':
-	// 			location.href = './videoClasses.html'
-	// 			break
-	// 		case 'btRegistration':
-	// 			location.href = './registration.html'
-	// 			break
-	// 		case 'title':
-	// 			location.href = './index.html'
-	// 			break
-	// 	}
-	// }
 }
-
-
-
-
-
 
 
 
