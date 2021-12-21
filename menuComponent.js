@@ -45,6 +45,7 @@ template.innerHTML = /*html*/`
 
 #burgerMenu:checked~#sideMenuShadow {
   transform: scale(1);
+  animation: fade linear .5s;
 }
 
 .burguer {
@@ -287,12 +288,21 @@ a {
   filter: hue-rotate(320deg);
 }
 
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 </style>
 
 <!-- ------------------------------HTML------------------------------------ -->
 <aside>
 
-	<input type="checkbox" id="burgerMenu" checked>
+	<input type="checkbox" id="burgerMenu">
 
 	<label for="burgerMenu">
         
